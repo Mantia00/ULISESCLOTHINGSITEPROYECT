@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre Nosotros - Odiseo</title>
+
+  <!-- Gothic-style font for logo only -->
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Header */
+    header {
+      background-color: #ffffff;
+      padding: 30px 20px 10px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo{
+      position:absolute;
+      width:300px;
+      height:300px;
+      right: 30px;
+      top: 15px;
+      display: block;
+      overflow: hidden;
+    }
+
+    .logo img{
+      width: 50%;    /* Image fills the link */
+      height: 50%;   /* Image fills the link */
+      object-fit: contain; /* Keeps aspect ratio and fits inside */
+    }
+
+     header h1 {
+      font-family: 'UnifrakturCook', cursive;
+      font-size: 48px;
+      margin: 0;
+      color: #CABD5B; /* Gold tone */
+    }
+
+
+    .lema {
+      font-size: 16px;
+      margin-top: 5px;
+      color: #888;
+      font-style: italic;
+    }
+
+    nav {
+      margin-top: 20px;
+    }
+
+    nav a {
+      background-color: #82256e;
+      color: white;
+      padding: 10px 20px;
+      margin: 0px 10px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      background-color: #e143bf;
+    }
+  
+    nav a:active{
+      background-color: #ff7ee3;
+    }
+
+
+    /* About Section */
+    .about {
+      padding: 80px 20px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 36px;
+      color: #bfa046;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      font-size: 18px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Ulises</h1>
+    <p class="lema">Wear Brand</p>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="productos.html">Productos</a>
+      <a href="sobreNosotros.html">Sobre Nosotros</a>
+    </nav>
+<button onclick="abrirCarrito()" style="position: fixed; top: 20px; left: 20px; z-index: 1000; background-color: #82256e; color: white; padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer;">
+  🛒 Ver Carrito
+</button>
+
+  </header>
+
+        <a href="index.html" class="logo">
+           <img src="images/Ulises.png">
+      </a>
+
+
+  <!-- About Section -->
+  <section class="about">
+    <h2>Nuestra Historia</h2>
+    <p>
+      En <strong>Odiseo</strong>, combinamos elegancia clásica con comodidad moderna. Nacimos con la misión de crear ropa que represente la identidad europea, mezclando tradición, estilo y calidad.
+    </p>
+    <p>
+      Cada prenda es diseñada con detalle, utilizando materiales de alta calidad y un enfoque sostenible. Nuestro equipo está comprometido con brindar una experiencia única para nuestros clientes, desde el diseño hasta la entrega.
+    </p>
+    <p>
+      Únete a nuestra travesía y descubre por qué Odiseo no es solo una marca, es un estilo de vida.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Ulises. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>

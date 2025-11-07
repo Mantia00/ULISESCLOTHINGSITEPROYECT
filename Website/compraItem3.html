@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comprar – Blazer</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    body { margin: 0; font-family: 'Helvetica Neue', sans-serif; background: #fff; color: #333; }
+    a { text-decoration: none; }
+    header { background: #fff; padding: 30px 20px 10px; text-align: center; border-bottom: 1px solid #ddd; position: relative; }
+    .logo { position: absolute; width: 300px; height: 300px; right: 30px; top: 15px; display: block; overflow: hidden; }
+    .logo img { width: 50%; height: 50%; object-fit: contain; }
+    header h1 { font-family: 'UnifrakturCook', cursive; font-size: 48px; margin: 0; color: #bfa046; letter-spacing: 2px; }
+    .lema { font-size: 16px; margin-top: 5px; color: #888; font-style: italic; }
+    nav { margin-top: 20px; }
+    nav a { background: #82256e; color: white; padding: 10px 20px; margin: 0 10px; border-radius: 10px; font-weight: bold; font-size: 14px; transition: 0.3s; }
+    nav a:hover { background: #e143bf; }
+    nav a:active { background: #ff7ee3; }
+    main { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
+    h2 { text-align: center; color: #bfa046; font-size: 32px; margin-bottom: 40px; }
+    .compra-container { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: center; }
+    .compra-img { flex: 1 1 300px; max-width: 400px; }
+    .compra-img img { width: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .compra-detalles { flex: 1 1 300px; max-width: 450px; }
+    .compra-detalles h3 { font-size: 26px; color: #333; }
+    .precio { font-size: 20px; color: #bfa046; font-weight: bold; margin: 15px 0; }
+    .cantidad { margin: 15px 0; }
+    .boton-comprar { background: #82256e; color: white; padding: 12px 25px; font-size: 16px; border: none; border-radius: 10px; cursor: pointer; transition: 0.3s; }
+    .boton-comprar:hover { background: #e143bf; }
+    .boton-comprar:active { background: #ff7ee3; transform: scale(0.98); }
+    footer { background: #f2f2f2; text-align: center; padding: 20px; font-size: 14px; color: #888; margin-top: 60px; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Ulises</h1>
+    <p class="lema">Wear Brand</p>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="productos.html">Productos</a>
+      <a href="sobreNosotros.html">Sobre Nosotros</a>
+    </nav>
+    <a href="index.html" class="logo"><img src="images/Ulises.png" alt="Logo Ulises"></a>
+
+    <button onclick="abrirCarrito()" style="position: fixed; top: 20px; left: 20px; z-index: 1000; background: #82256e; color: white; padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer;">
+      🛒 Ver Carrito
+    </button>
+  </header>
+
+  <main>
+    <h2>Comprar Blazer</h2>
+    <div class="compra-container">
+      <div class="compra-img">
+        <img src="images/Blazer.jpg" alt="Blazer">
+      </div>
+      <div class="compra-detalles">
+        <h3>Blazer</h3>
+        <p>Saco esencial para cualquier traje.</p>
+        <p class="precio">$55</p>
+
+        <div class="cantidad">
+          <label for="cantidad-Blazer">Cantidad:</label>
+          <input type="number" id="cantidad-Blazer" value="1" min="1">
+        </div>
+
+        <button class="boton-comprar" onclick="comprarAhora()">Comprar Ahora</button>
+        <button class="boton-comprar" onclick="añadirAlCarrito('Blazer', 55, 'images/Blazer.jpg')">Añadir al carrito</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Ulises. Todos los derechos reservados.
+  </footer>
+
+  <!-- Modal carrito -->
+  <div id="carrito-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999;">
+    <div style="background:white; max-width:400px; margin:80px auto; padding:20px; border-radius:10px; position:relative;">
+      <h3>🛍️ Tu Carrito</h3>
+      <div id="carrito-contenido" style="margin-top:20px; max-height:400px; overflow-y:auto;"></div>
+      <button onclick="cerrarCarrito()" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:18px; cursor:pointer;">❌</button>
+    </div>
+  </div>
+
+  <script>
+
+    function comprarAhora() {
+  const cantidad = parseInt(document.getElementById('cantidad-Blazer').value);
+  
+  if (isNaN(cantidad) || cantidad < 1) {
+    alert("Ingrese una cantidad válida");
+    return;
+  }
+  
+  alert(`Compraste ${cantidad} x Blazer por $${55 * cantidad}`);
+}
+
+    function abrirCarrito() {
+      const modal = document.getElementById('carrito-modal');
+      const contenido = document.getElementById('carrito-contenido');
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+      if (carrito.length === 0) {
+        contenido.innerHTML = "<p>El carrito está vacío.</p>";
+      } else {
+        contenido.innerHTML = carrito.map((producto, index) => `
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;">
+            <img src="${producto.imagen}" style="width:60px; height:60px; object-fit:cover; border-radius:5px;">
+            <div style="flex:1;">
+              <strong>${producto.nombre}</strong><br>
+              Cantidad: ${producto.cantidad}<br>
+              Precio: $${producto.precio}<br>
+              Total: $${producto.precio * producto.cantidad}<br>
+              <button onclick="removerItem(${index})" style="margin-top:8px; background:#ccc; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Remover</button>
+              <button onclick="comprarItem(${index})" style="margin-top:8px; margin-left:10px; background:#82256e; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Comprar este ítem</button>
+            </div>
+          </div>
+        `).join('') + `
+          <div style="text-align:center; margin-top:20px;">
+            <button onclick="comprarTodo()" style="background:#bfa046; color:white; padding:10px 20px; border:none; border-radius:8px; font-size:16px; cursor:pointer;">
+              🛍️ Comprar Todo
+            </button>
+          </div>
+        `;
+      }
+
+      modal.style.display = 'block';
+    }
+
+    function cerrarCarrito() {
+      document.getElementById('carrito-modal').style.display = 'none';
+    }
+
+    function removerItem(index) {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      carrito.splice(index, 1);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      abrirCarrito();
+    }
+
+    function comprarItem(index) {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const producto = carrito[index];
+      alert(`Compraste "${producto.nombre}" x${producto.cantidad} por $${producto.precio * producto.cantidad}`);
+      carrito.splice(index, 1);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      abrirCarrito();
+    }
+
+    function comprarTodo() {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      if (carrito.length === 0) {
+        alert("El carrito está vacío.");
+        return;
+      }
+      let total = carrito.reduce((acc, p) => acc + (p.precio * p.cantidad), 0);
+      alert(`Gracias por tu compra total de $${total}`);
+      localStorage.removeItem('carrito');
+      cerrarCarrito();
+    }
+
+    function añadirAlCarrito(nombre, precio, imagen) {
+      const cantidadInput = document.getElementById('cantidad-' + nombre);
+      const cantidad = parseInt(cantidadInput.value);
+
+      if (isNaN(cantidad) || cantidad < 1) {
+        alert("Ingrese una cantidad válida");
+        return;
+      }
+
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      let productoExistente = carrito.find(p => p.nombre === nombre);
+
+      if (productoExistente) {
+        productoExistente.cantidad += cantidad;
+      } else {
+        carrito.push({ nombre, precio, cantidad, imagen });
+      }
+
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      alert(`Añadiste ${cantidad} x ${nombre} al carrito.`);
+    }
+  </script>
+</body>
+</html>

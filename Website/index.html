@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ulises</title>
+
+  <!-- Gothic-style font for logo only -->
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Header */
+    header {
+      background-color: #ffffff;
+      padding: 30px 20px 10px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+        .logo{
+      position:absolute;
+      width:300px;
+      height:300px;
+      right: 30px;
+      top: 15px;
+      display: block;
+      overflow: hidden;
+    }
+
+    .logo img{
+      width: 50%;    /* Image fills the link */
+      height: 50%;   /* Image fills the link */
+      object-fit: contain; /* Keeps aspect ratio and fits inside */
+    }
+
+    header h1 {
+      font-family: 'UnifrakturCook', cursive;
+      font-size: 48px;
+      margin: 0;
+      color: #CABD5B; /* Gold tone */
+    }
+
+    .lema {
+      font-size: 16px;
+      margin-top: 5px;
+      color: #888;
+      font-style: italic;
+    }
+
+    nav {
+      margin-top: 20px;
+    }
+
+    nav a {
+      background-color: #82256e;
+      color: white;
+      padding: 10px 20px;
+      margin: 0px 10px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      background-color: #e143bf;
+    }
+  
+    nav a:active{
+      background-color: #ff7ee3;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 100px 20px 60px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+
+    .hero h2 {
+      font-size: 36px;
+      color: #CABD5B;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #666;
+    }
+
+    /* Featured Section */
+    .featured {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .featured h3 {
+      font-size: 28px;
+      color: #bcb857;
+      margin-bottom: 40px;
+    }
+
+    .product {
+      display: inline-block;
+      margin: 20px;
+      background-color: #fff;
+      border: 1px solid #eee;
+      padding: 15px;
+      border-radius: 8px;
+      width: 220px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    .product p {
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>U l i s e s</h1>
+    <p class="lema">Wear Brand</p>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="productos.html">Productos</a>
+      <a href="sobreNosotros.html">Sobre Nosotros</a>
+    </nav>
+<button onclick="abrirCarrito()" style="position: fixed; top: 20px; left: 20px; z-index: 1000; background-color: #82256e; color: white; padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer;">
+  🛒 Ver Carrito
+</button>
+
+  </header>
+
+        <a href="index.html" class="logo">
+           <img src="images/Ulises.png">
+      </a>
+
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Clasico y comodo</h2>
+    <p>Descubre nuestra colección premium de moda.</p>
+    <p>Tenemos todo para cada ocasion, siempre clasico, formal y comunicando fuerza y educacion.</p>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured">
+    <h3>Productos Destacados</h3>
+    <div class="product">
+      <img src="images/Camisa.jpg" alt="Camisa blanca elegante" />
+      <p>Camisa Blanca – $35</p>
+    </div>
+    <div class="product">
+      <img src="images/PantalonNegro.jpg" alt="Pantalon Negro" />
+      <p>Pantalon Negro – $55</p>
+    </div>
+    <!-- Puedes agregar más productos aquí -->
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Ulises. Todos los derechos reservados.
+  </footer>
+  <script>
+  function abrirCarrito() {
+    const modal = document.getElementById('carrito-modal');
+    const contenido = document.getElementById('carrito-contenido');
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    if (carrito.length === 0) {
+      contenido.innerHTML = "<p>El carrito está vacío.</p>";
+    } else {
+      contenido.innerHTML = carrito.map((producto, index) => `
+        <div style="display: flex; gap: 10px; align-items: center; border-bottom: 1px solid #ddd; padding: 10px 0;">
+          <img src="images/Camisa.jpg" alt="${producto.nombre}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;">
+          <div style="flex: 1;">
+            <strong>${producto.nombre}</strong><br>
+            Cantidad: ${producto.cantidad}<br>
+            Precio: $${producto.precio}<br>
+            Total: $${producto.precio * producto.cantidad}
+            <br>
+            <button onclick="removerItem(${index})" style="margin-top: 8px; background: #ccc; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Remover</button>
+            <button onclick="comprarItem(${index})" style="margin-top: 8px; margin-left: 10px; background: #82256e; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Comprar este ítem</button>
+          </div>
+        </div>
+      `).join('') + `
+        <div style="text-align: center; margin-top: 20px;">
+          <button onclick="comprarTodo()" style="background: #bfa046; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">
+            🛍️ Comprar Todo
+          </button>
+        </div>
+      `;
+    }
+
+    modal.style.display = 'block';
+  }
+
+  function cerrarCarrito() {
+    document.getElementById('carrito-modal').style.display = 'none';
+  }
+
+  function removerItem(index) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    carrito.splice(index, 1); // Elimina el item por su posición
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    abrirCarrito(); // Recarga el modal
+  }
+
+  function comprarItem(index) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const producto = carrito[index];
+    alert(`Compraste "${producto.nombre}" x${producto.cantidad} por $${producto.precio * producto.cantidad} (simulado)`);
+    carrito.splice(index, 1); // Remueve el item comprado
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    abrirCarrito(); // Recarga el modal
+  }
+
+  function comprarTodo() {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    if (carrito.length === 0) {
+      alert("El carrito está vacío.");
+      return;
+    }
+
+    let total = carrito.reduce((acc, p) => acc + (p.precio * p.cantidad), 0);
+    alert(`Gracias por tu compra total de $${total}`);
+
+    localStorage.removeItem('carrito');
+    cerrarCarrito();
+  }
+</script>
+
+<script>
+  function añadirAlCarrito() {
+    const nombre = "Camisa Blanca"; // Cambia si haces dinámico
+    const precio = 35;
+    const cantidadInput = document.getElementById('cantidad');
+    let cantidad = parseInt(cantidadInput.value);
+
+    if (cantidad < 1 || isNaN(cantidad)) {
+      alert("Ingrese una cantidad válida");
+      return;
+    }
+
+    // Lee el carrito actual o crea uno vacío
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Busca si el producto ya está en el carrito
+    let productoExistente = carrito.find(p => p.nombre === nombre);
+
+    if (productoExistente) {
+      // Si existe, suma la cantidad
+      productoExistente.cantidad += cantidad;
+    } else {
+      // Si no existe, agrega nuevo producto
+      carrito.push({
+        nombre: nombre,
+        precio: precio,
+        cantidad: cantidad,
+        imagen: "images/Camisa.jpg"  // Añade imagen para mostrar en carrito
+      });
+    }
+
+    // Guarda el carrito actualizado
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    alert(`Añadiste ${cantidad} x ${nombre} al carrito.`);
+  }
+</script>
+
+
+<div id="carrito-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999;">
+  <div style="background:white; max-width:400px; margin:80px auto; padding:20px; border-radius:10px; position:relative;">
+    <h3>🛍️ Tu Carrito</h3>
+    <div id="carrito-contenido" style="margin-top: 20px; max-height: 400px; overflow-y: auto;"></div>
+    <button onclick="cerrarCarrito()" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:18px; cursor:pointer;">❌</button>
+  </div>
+</div>
+</body>
+</html>
